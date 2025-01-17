@@ -18,27 +18,46 @@ namespace GestionAlumnos
             if (!IsPostBack)
             {
                 CargarAlumnos();
+                lbMensaje.Visible = false;
             }
         }
         private void CargarAlumnos()
         {
-            using (SqlConnection conn = new SqlConnection(connString))
+            try
             {
-                SqlCommand cmd = new SqlCommand("SELECT AlumnoID, Nombre + ' ' + Apellido AS AlumnoNombre FROM Alumnos", conn);
-                conn.Open();
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT AlumnoID, Nombre + ' ' + Apellido AS AlumnoNombre FROM Alumnos", conn);
+                    conn.Open();
 
-                SqlDataReader reader = cmd.ExecuteReader();
-                ddlAlumnos.DataSource = reader;
-                ddlAlumnos.DataTextField = "AlumnoNombre";  // Lo que se mostrará en la lista
-                ddlAlumnos.DataValueField = "AlumnoID";    // El valor que se guardará cuando se seleccione
-                ddlAlumnos.DataBind();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    ddlAlumnos.DataSource = reader;
+                    ddlAlumnos.DataTextField = "AlumnoNombre";  // Lo que se mostrará en la lista
+                    ddlAlumnos.DataValueField = "AlumnoID";    // El valor que se guardará cuando se seleccione
+                    ddlAlumnos.DataBind();
+                }
+
+                ddlAlumnos.Items.Insert(0, new ListItem("Seleccione un Alumno", "0"));
+            }
+            catch (Exception ex)
+            {
+                lbMensaje.Visible = true;
+                lbMensaje.Text = "Error al eliminar: " + ex.Message;
             }
 
-            ddlAlumnos.Items.Insert(0, new ListItem("Seleccione un Alumno", "0"));
         }
 
         protected void ddlAlumnos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
             int alumnoID = int.Parse(ddlAlumnos.SelectedValue);
 
             if (alumnoID == 0)
@@ -128,10 +147,61 @@ namespace GestionAlumnos
             }
             catch (Exception ex)
             {
-
-                Response.Write("<script>alert('Error al guardar la nota: " + ex.Message + "');</script>");
+                lbMensaje.Visible = true;
+                lbMensaje.Text = "Error al eliminar: " + ex.Message;
             }
 
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int alumnoID = int.Parse(ddlAlumnos.SelectedValue);
+
+                if (alumnoID == 0 || txtNombre.Text == "" || txtFechaNacimiento.Text == "" || txtDirecion.Text == "" || txtCorreo.Text == "" || txtCedula.Text == "" || txtApellido.Text == "")
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "document.getElementById('msgError').style.display = 'block';", true);
+                    return;
+                }
+
+                string connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_EliminarEstudiante", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@AlumnoID", alumnoID);
+
+                        try
+                        {
+                            conn.Open();
+                            int filasAfectadas = cmd.ExecuteNonQuery();
+
+                            if (filasAfectadas > 0)
+                            {
+                                ClientScript.RegisterStartupScript(this.GetType(), "alert", "document.getElementById('msgAlert1').style.display = 'block';", true);
+                                CargarAlumnos();
+                            }
+                            else
+                            {
+                                ClientScript.RegisterStartupScript(this.GetType(), "alert", "document.getElementById('msgError1').style.display = 'block';", true);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            lbMensaje.Visible = true;
+                            lbMensaje.Text = "Error al eliminar: " + ex.Message;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lbMensaje.Visible = true;
+                lbMensaje.Text = "Error al eliminar: " + ex.Message;
+            }
         }
     }
 }

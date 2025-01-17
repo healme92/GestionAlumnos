@@ -23,7 +23,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Estudiantes
-                    </a>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="GuardarAlumno.aspx">Registrar</a>
                             <a class="dropdown-item" href="ActualizarAlumno">Actualizar</a>
@@ -45,6 +45,13 @@
         </div>
         <div id="msgError" class="alert alert-danger alert-custom" role="alert" style="display: none;">
             Hubo un error al actualizar. Intenta nuevamente.
+        </div>        
+        
+        <div id="msgAlert1" class="alert alert-success alert-custom" role="alert" style="display: none;">
+            Alumno eliminado exitosamente.
+        </div>
+        <div id="msgError1" class="alert alert-danger alert-custom" role="alert" style="display: none;">
+            Hubo un error al eliminar. Intenta nuevamente.
         </div>
         <form id="form1" runat="server">
             <div>
@@ -84,6 +91,8 @@
                 <br />
                 <br />
                 <asp:Button class="btn btn-primary" ID="btnActualizar" runat="server" Text="Actualizar" OnClick="btnActualizar_Click" />
+                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
+                <asp:Label ID="lbMensaje" runat="server" Text="Mensaje" />
             </div>
         </form>
     </div>

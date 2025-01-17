@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Guardar | Actualizar Alumno</title>
+    <title>Guardar Alumno</title>
     <link href="styles.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
@@ -71,6 +71,8 @@
 
                 <asp:Label ID="lbFechaNacimiento" runat="server" Text="Fecha de Nacimiento" />
                 <asp:TextBox ID="txtFechaNacimiento" runat="server" type="date" />
+                <asp:Label ID="lbMensaje" runat="server" Text="Mensaje" />
+
                 <br />
                 <br />
 
@@ -79,6 +81,9 @@
                 <br />
                 <br />
                 <asp:Button class="btn btn-primary" ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" />
+                <br />
+                <br />
+                <asp:GridView ID="gvAlumnos" runat="server" AutoGenerateColumns="True" />
             </div>
         </form>
     </div>

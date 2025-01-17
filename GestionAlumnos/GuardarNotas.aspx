@@ -8,6 +8,9 @@
     <title>Guardar Notas</title>
     <link href="styles.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -23,7 +26,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Estudiantes
-                    </a>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="GuardarAlumno.aspx">Registrar</a>
                             <a class="dropdown-item" href="ActualizarAlumno">Actualizar</a>
@@ -50,7 +53,7 @@
         <form id="form1" runat="server">
             <div>
                 <asp:Label ID="lblAlumnoID" runat="server" Text="Seleccionar Alumno:" />
-                <asp:DropDownList ID="ddlAlumnos" runat="server" AutoPostBack="true" />
+                <asp:DropDownList ID="ddlAlumnos" runat="server" CssClass="form-control select2" AutoPostBack="true" />
                 <br />
                 <br />
 
@@ -72,4 +75,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+<script>
+    $(document).ready(function () {
+        $(".select2").select2({
+            placeholder: "Buscar estudiante...",
+            allowClear: true
+        });
+    });
+</script>
 </html>

@@ -36,6 +36,9 @@ namespace GestionAlumnos
 
             ddlAlumnos.Items.Insert(0, new ListItem("Seleccione un Alumno", "0"));
         }
+
+
+
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
             int alumnoID = int.Parse(ddlAlumnos.SelectedValue);
