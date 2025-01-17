@@ -1,0 +1,174 @@
+﻿/* styles.css */
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body and Global Layout */
+body {
+    background-color: #f4f7fa; /* Color de fondo suave */
+    color: #333; /* Color de texto oscuro */
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Contenedor principal */
+.container-custom {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Encabezado */
+h1, h2, h3 {
+    color: #007bff; /* Color primario */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Títulos principales */
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+/* Formulario */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Estilos para campos de entrada */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+    /* Foco en campos de entrada */
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="email"]:focus,
+    textarea:focus,
+    select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    }
+
+/* Botón primario */
+.btn-custom {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    /* Botón al pasar el ratón */
+    .btn-custom:hover {
+        background-color: #0056b3;
+    }
+
+/* Alerta de éxito */
+.alert-success {
+    background-color: #28a745;
+    color: white;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+    display: none; /* Por defecto está oculta */
+}
+
+/* Alerta de error */
+.alert-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+    display: none; /* Por defecto está oculta */
+}
+
+/* Estilos de tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+    .pagination a {
+        text-decoration: none;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+        .pagination a:hover {
+            background-color: #0056b3;
+        }
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .container-custom {
+        padding: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+}
